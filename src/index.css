@@ -12,13 +12,61 @@ html {
 }
 
 body {
+  --color-background: #ffffff;
+  --color-heading: #1e202a;
+  --color-body: #63687e;
+
   width: 100vw;
   font-size: 1.6rem;
   line-height: 1.5;
   margin: 0;
+  background: var(--color-background);
+  color: var(--color-body);
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
     "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+.dark {
+  --color-background: #1e202a;
+  --color-heading: #ffffff;
+  --color-body: #8b97c6;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--color-heading);
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 6rem;
+  margin-bottom: 2rem;
+}
+
+h2 {
+  font-size: 5rem;
+  margin-bottom: 2rem;
+}
+
+h3 {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+}
+
+h4 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+/* temp */
+.theme-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
