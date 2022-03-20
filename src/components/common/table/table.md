@@ -20,7 +20,7 @@
 
 
         * columns takes an array of objects
-            Each object contains a property "path"
+            Each object contains the "path" or "content"
             For every object it renders a <td> ( New cell ) on the row
             Renders the conent of the path from the given data
 

@@ -102,3 +102,13 @@ a {
   bottom: 0;
   right: 0;
 }
+
+.important-icon {
+  color: var(--color-heading);
+}
+
+.event-title {
+  margin: 1rem 0;
+  font-weight: bold;
+  text-transform: capitalize;
+}

@@ -1,11 +1,11 @@
 import React from "react";
-import Table from "./../common/table/table.component";
+import HomePage from "./../../pages/home/home-page.component";
 import "./root.styles.scss";
 
 const RootComponent = () => {
   return (
     <div className="root-component">
-      <Table />
+      <HomePage />
     </div>
   );
 };
