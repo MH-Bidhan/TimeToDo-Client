@@ -1,0 +1,35 @@
+.header {
+  background-color: var(--color-background-top);
+  height: 12rem;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0% 0% 30px 30px/ 10% 10% 10% 10%;
+
+  .logo-container {
+    margin: 2rem;
+    width: 10rem;
+    .logo {
+      width: 10rem;
+    }
+  }
+
+  .avatar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 3px solid var(--color-avatar-border);
+    background: var(--color-avatar-bg);
+    border-radius: 100%;
+    margin: 3.5rem;
+    width: 7rem;
+    height: 7rem;
+
+    .avatar {
+      stroke: 1px;
+      width: 100%;
+    }
+  }
+}

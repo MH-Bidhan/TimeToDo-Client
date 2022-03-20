@@ -1,6 +1,7 @@
 *,
 *::before,
 *::after {
+  background-color: none;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -8,15 +9,20 @@
 
 html {
   font-size: 62.5%;
-  width: 100vw;
+  overflow-x: hidden;
 }
 
 body {
   --color-background: #ffffff;
   --color-heading: #1e202a;
   --color-body: #63687e;
+  --color-background-top: #f5f7ff;
+  --color-avatar-border: #1e202a;
+  --color-avatar-bg: rgba(30, 32, 42, 0.2);
+  --content-width: 10rem;
+  --color-primary: #f0f2fa;
 
-  width: 100vw;
+  /* width: 100vw; */
   font-size: 1.6rem;
   line-height: 1.5;
   margin: 0;
@@ -31,9 +37,13 @@ body {
 }
 
 .dark {
+  --color-background-top: #1f212e;
+  --color-avatar-border: #ffffff;
+  --color-avatar-bg: rgba(255, 255, 255, 0.2);
   --color-background: #1e202a;
   --color-heading: #ffffff;
   --color-body: #8b97c6;
+  --color-primary: #252a41;
 }
 
 h1,
@@ -62,6 +72,28 @@ h3 {
 h4 {
   font-size: 3rem;
   margin-bottom: 1.5rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+.arrow-link {
+  text-align: start;
+  color: var(--color-heading);
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.arrow-link::after {
+  content: "-->";
+  margin-left: 5px;
+  transition: 0.15s;
+}
+
+.arrow-link:hover::after {
+  margin-left: 10px;
 }
 
 /* temp */
