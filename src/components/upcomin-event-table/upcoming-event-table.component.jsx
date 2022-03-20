@@ -1,6 +1,5 @@
-import moment from "moment";
 import React from "react";
-import CustomButton from "./../common/custom-button/custom-button.component";
+import configureAndFilterEvents from "./../../services/util-functions/events/configure-and-filter-events";
 import Important from "./../common/important/important.component";
 import Table from "./../common/table/table.component";
 
@@ -34,41 +33,11 @@ const UpcomingEventTable = () => {
     },
   ];
 
-  const events = a
-    .filter((data) => data.upcoming && !data.isImportant)
-    .map((data) => {
-      const {
-        _id,
-        name,
-        description,
-        upcoming,
-        marked,
-        completed,
-        archived,
-        isImportant,
-        timeOfEvent,
-      } = data;
-      const formatedDate = moment(timeOfEvent)
-        .format("MMMM Do YYYY, h:mm:ss a")
-        .split(", ");
-      const date = formatedDate[0];
-      const time = formatedDate[1];
+  const events = configureAndFilterEvents(
+    a,
+    (data) => data.upcoming && !data.isImportant
+  );
 
-      return {
-        _id,
-        name,
-        description,
-        upcoming,
-        marked,
-        completed,
-        archived,
-        isImportant,
-        time,
-        date,
-      };
-    });
-
-  console.log(events);
   const columns = [
     {
       key: "important",
@@ -79,9 +48,7 @@ const UpcomingEventTable = () => {
     { path: "time", label: "time" },
     {
       key: "delete",
-      content: (event) => (
-        <CustomButton label={"delete"} size={"small"} color={"red"} />
-      ),
+      content: (event) => <button className="btn btn-danger">Delete</button>,
     },
   ];
 

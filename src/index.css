@@ -96,13 +96,6 @@ a {
   margin-left: 10px;
 }
 
-/* temp */
-.theme-button {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
-
 .important-icon {
   color: var(--color-heading);
 }
@@ -111,4 +104,15 @@ a {
   margin: 1rem 0;
   font-weight: bold;
   text-transform: capitalize;
+}
+
+.btn {
+  font-size: 1.6rem;
+}
+
+/* temp */
+.theme-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
