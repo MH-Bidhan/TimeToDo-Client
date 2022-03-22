@@ -101,13 +101,17 @@ a {
 }
 
 .event-title {
-  margin: 1rem 0;
+  margin: 1.5rem 0;
   font-weight: bold;
   text-transform: capitalize;
 }
 
 .btn {
   font-size: 1.6rem;
+}
+
+.important-icon {
+  cursor: pointer;
 }
 
 /* temp */

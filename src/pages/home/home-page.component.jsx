@@ -1,11 +1,23 @@
 import React from "react";
-import UpcomingEventTable from "./../../components/upcomin-event-table/upcoming-event-table.component";
+import ImportantEvents from "./../../components/important-events/important-events";
+import UpcomingEvents from "./../../components/upcomin-events/upcoming-events.component";
+import useEvents from "./../../hooks/useEvents";
 import "./home-page.styles.scss";
 
 const HomePage = () => {
+  const { events, handleImportant, deleteEvent } = useEvents();
   return (
     <div className="home container">
-      <UpcomingEventTable />
+      <ImportantEvents
+        events={events}
+        handleImportant={handleImportant}
+        deleteEvent={deleteEvent}
+      />
+      <UpcomingEvents
+        events={events}
+        handleImportant={handleImportant}
+        deleteEvent={deleteEvent}
+      />
     </div>
   );
 };

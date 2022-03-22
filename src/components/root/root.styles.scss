@@ -1,0 +1,11 @@
+.root-component {
+  background-color: var(--color-primary);
+  padding-bottom: 2rem;
+  height: 70rem;
+  overflow-y: scroll;
+  position: relative;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
