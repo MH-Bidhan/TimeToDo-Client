@@ -2,6 +2,7 @@ import React from "react";
 import configureAndFilterEvents from "../../services/util-functions/events/configure-and-filter-events";
 import Important from "../common/important/important.component";
 import Table from "../common/table/table.component";
+import DeleteButton from "./../common/delete-button/delete-button.component";
 
 const ImportantEvents = ({ events, handleImportant, deleteEvent }) => {
   const filterdEvents = configureAndFilterEvents(
@@ -14,7 +15,7 @@ const ImportantEvents = ({ events, handleImportant, deleteEvent }) => {
       key: "important",
       content: (event) => (
         <Important
-          onClick={() => handleImportant(event)}
+          handleImportant={() => handleImportant(event)}
           isImportant={event.isImportant}
         />
       ),
@@ -25,9 +26,7 @@ const ImportantEvents = ({ events, handleImportant, deleteEvent }) => {
     {
       key: "delete",
       content: (event) => (
-        <button onClick={() => deleteEvent(event)} className="btn btn-danger">
-          Delete
-        </button>
+        <DeleteButton handleDelete={() => deleteEvent(event)} />
       ),
     },
   ];

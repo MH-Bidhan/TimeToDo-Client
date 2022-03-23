@@ -1,0 +1,24 @@
+.navbar {
+  border: 2px solid var(--color-heading);
+  width: 100%;
+  padding: 0;
+  margin-bottom: 4rem;
+
+  .nav-item {
+    color: var(--color-body);
+    background-color: unset;
+    padding: 1rem;
+    width: 50%;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &.active {
+      color: var(--color-heading);
+    }
+
+    &:first-child {
+      border-right: 2px solid var(--color-heading);
+    }
+  }
+}

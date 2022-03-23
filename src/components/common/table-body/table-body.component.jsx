@@ -6,8 +6,6 @@ const createKey = (item) => {
   return key;
 };
 
-// const renderCell = (item,)
-
 const TableBody = ({ data, columns }) => {
   return (
     <tbody>

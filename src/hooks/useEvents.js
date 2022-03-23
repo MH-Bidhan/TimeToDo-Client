@@ -3,11 +3,13 @@ import { httpDeleteEvent, httpGetEvents, httpUpdateEvents } from "./requests";
 
 function useEvents() {
   const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const getEvents = useCallback(async () => {
     const fetchedEvents = await httpGetEvents();
 
     setEvents(fetchedEvents);
+    setLoading(false);
   }, []);
 
   const handleImportant = useCallback(
@@ -18,10 +20,8 @@ function useEvents() {
       };
 
       try {
-        const u = await httpUpdateEvents(_id, updateCred);
+        await httpUpdateEvents(_id, updateCred);
         getEvents();
-
-        return u;
       } catch (e) {
         console.log(e.message);
       }
@@ -52,6 +52,7 @@ function useEvents() {
 
   return {
     events,
+    loading,
     handleImportant,
     deleteEvent,
   };

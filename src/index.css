@@ -13,11 +13,11 @@ html {
 }
 
 body {
-  --color-background: #ffffff;
-  --color-heading: #1e202a;
-  --color-body: #63687e;
-  --color-background-top: #f5f7ff;
-  --color-avatar-border: #1e202a;
+  --color-background: rgb(255, 255, 255);
+  --color-heading: rgb(30, 32, 42);
+  --color-body: rgb(99, 104, 126);
+  --color-background-top: rgb(245, 247, 255);
+  --color-avatar-border: rgb(30, 32, 42);
   --color-avatar-bg: rgba(30, 32, 42, 0.2);
   --content-width: 10rem;
   --color-primary: #f0f2fa;
@@ -37,13 +37,13 @@ body {
 }
 
 .dark {
-  --color-background-top: #1f212e;
-  --color-avatar-border: #ffffff;
+  --color-background-top: rgb(31, 33, 46);
+  --color-avatar-border: rgb(255, 255, 255);
   --color-avatar-bg: rgba(255, 255, 255, 0.2);
-  --color-background: #1e202a;
-  --color-heading: #ffffff;
-  --color-body: #8b97c6;
-  --color-primary: #252a41;
+  --color-background: rgb(30, 32, 42);
+  --color-heading: rgb(255, 255, 255);
+  --color-body: rgb(139, 151, 198);
+  --color-primary: rgb(37, 42, 65);
 }
 
 h1,

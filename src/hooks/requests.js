@@ -3,7 +3,7 @@ import http from "./../services/http/http";
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmY0MWMyMTViYzQxMGQ0NDRkZTZhMiIsImlzR29sZCI6ZmFsc2UsImlhdCI6MTY0NzkyODk5NSwiZXhwIjoxNjQ4MDE1Mzk1fQ.IWakPlxXN7ZS7elWoeaF8IGGkwOwUjJFzEYUoILpI3s";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmY0MWMyMTViYzQxMGQ0NDRkZTZhMiIsImlzR29sZCI6ZmFsc2UsImlhdCI6MTY0ODAxNTcwOCwiZXhwIjoxNjQ4MTAyMTA4fQ.vja_GahYZPTAKsUHcEFR_bzU3yFXQLQQWUdSedcA1MM";
 
 export async function httpGetEvents() {
   const { data: fetchedEvents } = await http.get(`${API_ENDPOINT}/events`, {
