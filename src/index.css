@@ -114,9 +114,6 @@ a {
   cursor: pointer;
 }
 
-/* temp */
-.theme-button {
-  position: absolute;
-  bottom: 0;
-  right: 0;
+.App {
+  position: relative;
 }

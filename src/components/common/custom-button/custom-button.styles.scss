@@ -12,4 +12,10 @@
   border-radius: 30px;
   text-transform: capitalize;
   cursor: pointer;
+  white-space: nowrap;
+
+  &.small {
+    max-width: 180px;
+    font-size: 1.6rem;
+  }
 }

@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import signInUser from "../../services/util-functions/sign-in-user";
 import CustomButton from "../common/custom-button/custom-button.component";
 import InputFeild from "./../common/input-feild/input-feild.component";
 import "./sign-in.styles.scss";
+import validateSignIn from "./sign-in.validate";
 
 class SignIn extends React.Component {
   constructor() {
@@ -11,6 +13,7 @@ class SignIn extends React.Component {
     this.state = {
       email: "",
       password: "",
+      error: {},
     };
   }
 
@@ -20,19 +23,53 @@ class SignIn extends React.Component {
     this.setState({ [name]: value });
   };
 
-  render() {
+  handleSubmit = async (e) => {
+    e.preventDefault();
+
     const { email, password } = this.state;
+
+    const signInCreds = { email, password };
+
+    const result = validateSignIn(signInCreds);
+
+    if (result.error) {
+      const errorDetails = result.error.details;
+
+      errorDetails.map((detail) => {
+        return this.setState({
+          error: {
+            [detail.path]: detail.message,
+          },
+        });
+      });
+
+      return result.error;
+    }
+
+    this.setState({ error: {} });
+
+    await signInUser({
+      email,
+      password,
+    });
+
+    document.location = "/";
+  };
+
+  render() {
+    const { email, password, error } = this.state;
     return (
       <div className="sign-in container">
         <div>Sign in with email and password</div>
-        <form className="sign-in-form">
+        <form onSubmit={this.handleSubmit} className="sign-in-form">
           <InputFeild
             label={"Email Address"}
             name="email"
             type="email"
             value={email}
             handleChange={this.handleChange}
-            required
+            error={error.email}
+            // required
           />
           <InputFeild
             label={"Password"}
@@ -40,7 +77,8 @@ class SignIn extends React.Component {
             type="password"
             value={password}
             handleChange={this.handleChange}
-            required
+            error={error.password}
+            // required
           />
           <CustomButton label={"Sign In"} />
         </form>

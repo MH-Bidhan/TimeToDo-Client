@@ -28,12 +28,18 @@ function configureAndFilterEvents(events = [], callback) {
       completed,
       archived,
       isImportant,
+      timeOfEvent,
       time,
       date,
     };
   });
 
-  return filterdEvents;
+  return filterdEvents.sort((a, b) => {
+    const aTime = new Date(a.timeOfEvent);
+    const bTime = new Date(b.timeOfEvent);
+
+    return aTime - bTime;
+  });
 }
 
 export default configureAndFilterEvents;

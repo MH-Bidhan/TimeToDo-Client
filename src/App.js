@@ -1,29 +1,54 @@
-import { createContext, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { createContext, useEffect, useState } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Header from "./components/header/header.component";
 import RootComponent from "./components/root/root.component";
+import UtilDropDown from "./components/util-dropdown/util-dropdown.component";
+import useUser from "./hooks/useUser";
+import LoadingPage from "./pages/loading/loading-page.component";
 import SigninPage from "./pages/sign-in/sign-in-page.component";
 import SignUpPage from "./pages/sign-up/sign-up-page.component";
 
-export const ThemeContext = createContext();
+export const UserContext = createContext();
 
 function App() {
-  const [darkTheme, setDarkTheme] = useState(true);
+  const { user, loading } = useUser();
+
+  const [utils, setUtils] = useState(false);
+  const [darkTheme, setDarkTheme] = useState(false);
+
+  useEffect(() => {
+    const theme = user?.darkTheme || false;
+    console.log();
+    setDarkTheme(theme);
+  }, [user]);
 
   document.body.className = darkTheme ? "dark" : "";
 
   return (
     <div className="App">
-      <Header />
-      <Routes>
-        <Route path="/" element={<RootComponent />} />
-        <Route path="/signin" element={<SigninPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
-      </Routes>
+      <Header state={utils} setState={setUtils} avatar={user?.avatar} />
+      {utils ? (
+        <UtilDropDown user={user} theme={darkTheme} setTheme={setDarkTheme} />
+      ) : null}
 
-      <button onClick={() => setDarkTheme(!darkTheme)} className="theme-button">
-        theme
-      </button>
+      {loading ? (
+        <LoadingPage />
+      ) : (
+        <Routes>
+          <Route
+            path="/"
+            element={user ? <RootComponent /> : <Navigate to={"/signin"} />}
+          />
+          <Route
+            path="/signin"
+            element={!user ? <SigninPage /> : <Navigate to={"/"} />}
+          />
+          <Route
+            path="/signup"
+            element={!user ? <SignUpPage /> : <Navigate to={"/"} />}
+          />
+        </Routes>
+      )}
     </div>
   );
 }

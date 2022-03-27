@@ -1,9 +1,9 @@
 import React from "react";
 import "./custom-button.styles.scss";
 
-const CustomButton = ({ label, handleClick }) => {
+const CustomButton = ({ size, label, handleClick }) => {
   return (
-    <button onClick={handleClick} className={`custom-button  `}>
+    <button onClick={handleClick} className={`custom-button ${size} `}>
       {label}
     </button>
   );

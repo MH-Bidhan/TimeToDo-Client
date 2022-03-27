@@ -9,7 +9,7 @@ const LoadingScreen = ({ loading }) => {
     margin: 0 auto;
   `;
   return (
-    <div className="loading-page">
+    <div className="loading-screen">
       <ClockLoader
         color={"var(--color-heading)"}
         loading={loading}

@@ -1,9 +1,22 @@
+@keyframes errorAnimation {
+  0% {
+    transform: translate(-2rem);
+  }
+  50% {
+    transform: translate(2rem);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
 .input-feild-container {
   width: 100%;
 
+  margin: 4rem auto;
   .input-feild {
+    margin: 2rem auto;
     display: block;
-    margin: 4rem auto;
     width: 100%;
     max-width: 450px;
     // height: 5rem;
@@ -21,6 +34,15 @@
     &:focus {
       outline: 2px solid var(--color-heading);
     }
+  }
+
+  .input-error-messege {
+    border: 1px solid var(--color-body);
+    padding: 1rem;
+    font-size: 1.4rem;
+    animation-name: errorAnimation;
+    animation-duration: 0.8s;
+    transition: transform 0.15s ease-in;
   }
 }
 input:-webkit-autofill,

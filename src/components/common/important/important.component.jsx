@@ -1,5 +1,4 @@
 import { css } from "@emotion/react";
-import "font-awesome/css/font-awesome.min.css";
 import React, { useState } from "react";
 import { ClipLoader } from "react-spinners";
 
