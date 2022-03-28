@@ -1,4 +1,5 @@
 import React from "react";
+import InputError from "./../input-error/input-error.component";
 import "./input-feild.styles.scss";
 
 const InputFeild = ({ label, error, handleChange, ...otherProps }) => {
@@ -11,10 +12,7 @@ const InputFeild = ({ label, error, handleChange, ...otherProps }) => {
         onChange={handleChange}
         {...otherProps}
       />
-      {error ? <div className="input-error-messege">{error} </div> : null}
-      {/* <div className="input-error-messege">
-        "Password" length must be at least 8 characters long{" "}
-      </div> */}
+      {error ? <InputError error={error} /> : null}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import signOutUser from "../../services/util-functions/events/sign-out-user";
+import signOutUser from "../../services/util-functions/sign-out-user";
 import useUser from "./../../hooks/useUser";
 import ToggleSwitch from "./../common/toggle-switcher/toggle-switch.component";
 import "./util-dropdown.styles.scss";

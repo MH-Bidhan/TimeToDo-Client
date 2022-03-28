@@ -35,23 +35,29 @@ class SignIn extends React.Component {
     if (result.error) {
       const errorDetails = result.error.details;
 
-      errorDetails.map((detail) => {
+      return errorDetails.map((detail) => {
         return this.setState({
           error: {
             [detail.path]: detail.message,
           },
         });
       });
-
-      return result.error;
     }
 
-    this.setState({ error: {} });
-
-    await signInUser({
+    const response = await signInUser({
       email,
       password,
     });
+
+    if (response?.message) {
+      return this.setState({
+        error: {
+          password: response?.message,
+        },
+      });
+    }
+
+    this.setState({ error: {} });
 
     document.location = "/";
   };
@@ -69,7 +75,7 @@ class SignIn extends React.Component {
             value={email}
             handleChange={this.handleChange}
             error={error.email}
-            // required
+            required
           />
           <InputFeild
             label={"Password"}
@@ -78,9 +84,9 @@ class SignIn extends React.Component {
             value={password}
             handleChange={this.handleChange}
             error={error.password}
-            // required
+            required
           />
-          <CustomButton label={"Sign In"} />
+          <CustomButton type="submit" label={"Sign In"} />
         </form>
         <div className="sign-up-message">
           I do not have an account{" "}

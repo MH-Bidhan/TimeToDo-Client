@@ -5,9 +5,23 @@ const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 const token = localStorage.getItem("token");
 
 export async function httpSignInUser(user) {
-  const { data } = await http.post(`${API_ENDPOINT}/auth/login`, user);
+  const response = await fetch(`${API_ENDPOINT}/auth/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(user),
+  });
 
-  return data;
+  return response.json();
+}
+
+export async function httpSignUpUser(user) {
+  const response = await fetch(`${API_ENDPOINT}/users`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(user),
+  });
+
+  return response.json();
 }
 
 export async function httpGetUser() {

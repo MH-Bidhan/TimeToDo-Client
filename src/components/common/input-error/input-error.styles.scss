@@ -1,0 +1,20 @@
+@keyframes errorAnimation {
+  0% {
+    transform: translate(-2rem);
+  }
+  50% {
+    transform: translate(2rem);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.input-error-message {
+  border: 1px solid var(--color-body);
+  padding: 1rem;
+  font-size: 1.4rem;
+  animation-name: errorAnimation;
+  animation-duration: 0.8s;
+  transition: transform 0.15s ease-in;
+}
