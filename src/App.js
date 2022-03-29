@@ -5,6 +5,7 @@ import RootComponent from "./components/root/root.component";
 import UtilDropDown from "./components/util-dropdown/util-dropdown.component";
 import useUser from "./hooks/useUser";
 import LoadingPage from "./pages/loading/loading-page.component";
+import NewEventPage from "./pages/new-event/new-event-page.component";
 import SigninPage from "./pages/sign-in/sign-in-page.component";
 import SignUpPage from "./pages/sign-up/sign-up-page.component";
 
@@ -38,6 +39,11 @@ function App() {
           <Route
             path="/"
             element={user ? <RootComponent /> : <Navigate to={"/signin"} />}
+          />
+          <Route
+            path="/newEvent"
+            index
+            element={user ? <NewEventPage /> : <Navigate to={"/signin"} />}
           />
           <Route
             path="/signin"

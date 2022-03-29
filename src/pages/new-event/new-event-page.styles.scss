@@ -1,0 +1,14 @@
+.new-event-page {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.5);
+
+  .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+}

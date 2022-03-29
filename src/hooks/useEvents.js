@@ -1,5 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
-import { httpDeleteEvent, httpGetEvents, httpUpdateEvents } from "./requests";
+import {
+  httpCreateEvent,
+  httpDeleteEvent,
+  httpGetEvents,
+  httpUpdateEvents,
+} from "./requests";
 
 function useEvents() {
   const [events, setEvents] = useState([]);
@@ -11,6 +16,17 @@ function useEvents() {
     setEvents(fetchedEvents);
     setLoading(false);
   }, []);
+
+  const createNewEvent = useCallback(
+    async (event) => {
+      const newEvent = await httpCreateEvent(event);
+
+      getEvents();
+
+      return newEvent;
+    },
+    [getEvents]
+  );
 
   const handleImportant = useCallback(
     async (event) => {
@@ -53,6 +69,7 @@ function useEvents() {
   return {
     events,
     loading,
+    createNewEvent,
     handleImportant,
     deleteEvent,
   };

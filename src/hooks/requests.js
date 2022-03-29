@@ -53,6 +53,20 @@ export async function httpGetEvents() {
   return fetchedEvents;
 }
 
+export async function httpCreateEvent(event) {
+  const { data: fetchedEvents } = await http.post(
+    `${API_ENDPOINT}/events`,
+    event,
+    {
+      headers: {
+        "x-auth-token": token,
+      },
+    }
+  );
+
+  return fetchedEvents;
+}
+
 export async function httpUpdateEvents(id, updateCred) {
   const { data: updatedEvent } = await http.put(
     `${API_ENDPOINT}/events/${id}`,

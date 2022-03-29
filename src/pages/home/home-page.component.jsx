@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import CustomButton from "./../../components/common/custom-button/custom-button.component";
 import LoadingScreen from "./../../components/common/loading-screen/loading-screen.component";
 import ImportantEvents from "./../../components/important-events/important-events";
@@ -8,6 +9,7 @@ import "./home-page.styles.scss";
 
 const HomePage = () => {
   const { loading, events, handleImportant, deleteEvent } = useEvents();
+  const navigate = useNavigate();
 
   return (
     <div className="home container">
@@ -16,7 +18,11 @@ const HomePage = () => {
       ) : (
         <React.Fragment>
           <div className="button-container">
-            <CustomButton size={"small"} label={"add new event"} />
+            <CustomButton
+              handleClick={() => navigate("/newEvent")}
+              size={"small"}
+              label={"add new event"}
+            />
           </div>
           <ImportantEvents
             events={events}
