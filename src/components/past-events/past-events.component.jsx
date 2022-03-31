@@ -7,7 +7,7 @@ import DeleteButton from "./../common/delete-button/delete-button.component";
 const PastEvents = ({ events, deleteEvent }) => {
   const filterdEvents = configureAndFilterEvents(
     events,
-    (data) => !data.upcoming
+    (data) => !data.upcoming && data.marked
   );
 
   const columns = [
@@ -28,6 +28,19 @@ const PastEvents = ({ events, deleteEvent }) => {
     { path: "date", label: "Date" },
     { path: "time", label: "time" },
     {
+      key: "status",
+
+      content: (event) => {
+        const badgeColor = event.completed ? "badge-success" : "badge-danger";
+        return (
+          <span className={`badge ${badgeColor}`}>
+            {" "}
+            {event.completed ? "Completed" : "Failed"}
+          </span>
+        );
+      },
+    },
+    {
       key: "delete",
       content: (event) => (
         <DeleteButton handleDelete={() => deleteEvent(event)} />
@@ -37,12 +50,12 @@ const PastEvents = ({ events, deleteEvent }) => {
 
   return (
     <div className="important-event-table">
-      <div className="event-title">past events</div>
       {filterdEvents.length !== 0 ? (
-        <Table columns={columns} data={filterdEvents} />
-      ) : (
-        <span>No events found in the current list</span>
-      )}
+        <React.Fragment>
+          <div className="event-title">past events</div>
+          <Table columns={columns} data={filterdEvents} />
+        </React.Fragment>
+      ) : null}
     </div>
   );
 };

@@ -45,6 +45,24 @@ function useEvents() {
     [getEvents]
   );
 
+  const handleMark = useCallback(
+    async (event, success) => {
+      const { _id } = event;
+      const updateCred = {
+        marked: true,
+        completed: success,
+      };
+
+      try {
+        await httpUpdateEvents(_id, updateCred);
+        getEvents();
+      } catch (e) {
+        console.log(e.message);
+      }
+    },
+    [getEvents]
+  );
+
   const deleteEvent = useCallback(
     async (event) => {
       const { _id } = event;
@@ -71,6 +89,7 @@ function useEvents() {
     loading,
     createNewEvent,
     handleImportant,
+    handleMark,
     deleteEvent,
   };
 }
