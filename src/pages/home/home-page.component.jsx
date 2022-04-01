@@ -1,14 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import ImportantTasks from "../../components/important-tasks/important-tasks.component";
+import UpcomingTasks from "../../components/upcomin-tasks/upcoming-tasks.component";
 import CustomButton from "./../../components/common/custom-button/custom-button.component";
 import LoadingScreen from "./../../components/common/loading-screen/loading-screen.component";
-import ImportantEvents from "./../../components/important-events/important-events";
-import UpcomingEvents from "./../../components/upcomin-events/upcoming-events.component";
-import useEvents from "./../../hooks/useEvents";
+import useTasks from "./../../hooks/useTasks";
 import "./home-page.styles.scss";
 
 const HomePage = () => {
-  const { loading, events, handleImportant, deleteEvent } = useEvents();
+  const { loading, tasks, handleImportant, deleteTask } = useTasks();
   const navigate = useNavigate();
 
   return (
@@ -19,20 +19,20 @@ const HomePage = () => {
         <React.Fragment>
           <div className="button-container">
             <CustomButton
-              handleClick={() => navigate("/newEvent")}
+              handleClick={() => navigate("/newTask")}
               size={"small"}
-              label={"add new event"}
+              label={"add new task"}
             />
           </div>
-          <ImportantEvents
-            events={events}
+          <ImportantTasks
+            tasks={tasks}
             handleImportant={handleImportant}
-            deleteEvent={deleteEvent}
+            deleteTask={deleteTask}
           />
-          <UpcomingEvents
-            events={events}
+          <UpcomingTasks
+            tasks={tasks}
             handleImportant={handleImportant}
-            deleteEvent={deleteEvent}
+            deleteTask={deleteTask}
           />
         </React.Fragment>
       )}

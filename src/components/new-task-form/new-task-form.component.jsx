@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import CustomButton from "./../common/custom-button/custom-button.component";
-import InputError from "./../common/input-error/input-error.component";
-import InputFeild from "./../common/input-feild/input-feild.component";
-import "./new-event-form.styles.scss";
-import validateEvent from "./new-event.validate";
+import CustomButton from "../common/custom-button/custom-button.component";
+import InputError from "../common/input-error/input-error.component";
+import InputFeild from "../common/input-feild/input-feild.component";
+import "./new-tasks-form.styles.scss";
+import validateTask from "./new-tasks.validate";
 
-class NewEventForm extends React.Component {
+class NewTaskForm extends React.Component {
   constructor(props) {
     super(props);
 
@@ -31,9 +31,9 @@ class NewEventForm extends React.Component {
     e.preventDefault();
     const { name, description, time, date } = this.state;
 
-    const { createNewEvent } = this.props;
+    const { createNewTask } = this.props;
 
-    const result = validateEvent({
+    const result = validateTask({
       name,
       description,
       time,
@@ -53,25 +53,25 @@ class NewEventForm extends React.Component {
     const timedifference = new Date().getTimezoneOffset() * 60 * 1000;
     const timeInputs = new Date(`${date}T${time}:00.000Z`).getTime();
 
-    const timeOfEvent = new Date(timeInputs + timedifference);
+    const timeOfTask = new Date(timeInputs + timedifference);
 
-    console.log(timeOfEvent);
+    console.log(timeOfTask);
 
-    if (Date.now() > timeOfEvent.getTime()) {
+    if (Date.now() > timeOfTask.getTime()) {
       console.log("e");
       return this.setState({
         error: {
-          time: "Event time must be in the future",
+          time: "Task time must be in the future",
         },
       });
     }
 
     this.setState({ error: {} });
 
-    createNewEvent({
+    createNewTask({
       name: name.trim(),
       description: description.trim(),
-      timeOfEvent: timeOfEvent.toISOString(),
+      timeOfTask: timeOfTask.toISOString(),
     });
 
     document.location = "/";
@@ -82,22 +82,22 @@ class NewEventForm extends React.Component {
     const today = new Date().toISOString().split("T")[0];
 
     return (
-      <div className="new-event">
+      <div className="new-task">
         <span className="close-button">
           <Link to={"/"}>&#10006;</Link>
         </span>
-        <form className="new-event-form" onSubmit={this.handleSubmit}>
+        <form className="new-task-form" onSubmit={this.handleSubmit}>
           <InputFeild
             name="name"
             value={name}
-            label={"Name Of Event"}
+            label={"Name Of Task"}
             handleChange={this.handleChange}
             error={error.name}
           />
           <div className="input-feild-container">
             <textarea
               className="input-feild"
-              placeholder="Event Description"
+              placeholder="Task Description"
               name="description"
               onChange={this.handleChange}
               value={description}
@@ -127,7 +127,7 @@ class NewEventForm extends React.Component {
             error={error.time}
           />
           <CustomButton
-            label={"Create New event"}
+            label={"Create New task"}
             size={"small"}
             type="submit"
           />
@@ -137,4 +137,4 @@ class NewEventForm extends React.Component {
   }
 }
 
-export default NewEventForm;
+export default NewTaskForm;

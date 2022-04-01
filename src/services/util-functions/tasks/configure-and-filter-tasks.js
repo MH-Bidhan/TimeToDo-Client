@@ -1,7 +1,7 @@
 import moment from "moment";
 
-function configureAndFilterEvents(events = [], callback) {
-  const filterdEvents = events.filter(callback).map((data) => {
+function configureAndFilterTasks(tasks = [], callback) {
+  const filterdTasks = tasks.filter(callback).map((data) => {
     const {
       _id,
       name,
@@ -11,9 +11,9 @@ function configureAndFilterEvents(events = [], callback) {
       completed,
       archived,
       isImportant,
-      timeOfEvent,
+      timeOfTask,
     } = data;
-    const formatedDate = moment(timeOfEvent)
+    const formatedDate = moment(timeOfTask)
       .format("MMMM Do YYYY, h:mm:ss a")
       .split(", ");
     const date = formatedDate[0];
@@ -28,18 +28,18 @@ function configureAndFilterEvents(events = [], callback) {
       completed,
       archived,
       isImportant,
-      timeOfEvent,
+      timeOfTask,
       time,
       date,
     };
   });
 
-  return filterdEvents.sort((a, b) => {
-    const aTime = new Date(a.timeOfEvent);
-    const bTime = new Date(b.timeOfEvent);
+  return filterdTasks.sort((a, b) => {
+    const aTime = new Date(a.timeOfTask);
+    const bTime = new Date(b.timeOfTask);
 
     return aTime - bTime;
   });
 }
 
-export default configureAndFilterEvents;
+export default configureAndFilterTasks;

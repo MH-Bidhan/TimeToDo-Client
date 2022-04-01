@@ -19,8 +19,8 @@ const NavItem = ({ label, pageId }) => {
 const NavBar = () => {
   return (
     <nav className="navbar">
-      <NavItem label={"upcoming events"} pageId="homePage" />
-      <NavItem label={"Past Events"} pageId="pastEventPage" />
+      <NavItem label={"upcoming tasks"} pageId="homePage" />
+      <NavItem label={"Past tasks"} pageId="pastTasksPage" />
     </nav>
   );
 };

@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import PastEventsPage from "../../pages/past-events/past-events-page.component";
+import PastTaskPage from "../../pages/past-tasks/past-tasks-page.component";
 import NavBar from "../navbar/navbar.component";
 import HomePage from "./../../pages/home/home-page.component";
 import "./root.styles.scss";
@@ -20,7 +20,7 @@ const RootComponent = () => {
         <NavBar />
       </PageContext.Provider>
       <div className="page-container">
-        {page === "homePage" ? <HomePage /> : <PastEventsPage />}
+        {page === "homePage" ? <HomePage /> : <PastTaskPage />}
       </div>
     </div>
   );

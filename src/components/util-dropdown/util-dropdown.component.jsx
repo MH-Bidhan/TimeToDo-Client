@@ -41,7 +41,7 @@ const UtilDropDown = ({ user, theme, setTheme }) => {
       </div>
       {user ? (
         <React.Fragment>
-          <div className="util-item">Archived Events</div>
+          <div className="util-item">Archived Tasks</div>
           <div onClick={signOutUser} className="util-item">
             Sign Out
           </div>

@@ -1,12 +1,11 @@
 import { css } from "@emotion/react";
 import React, { useState } from "react";
 import { ClipLoader } from "react-spinners";
+import configureAndFilterTasks from "../../services/util-functions/tasks/configure-and-filter-tasks";
 import Important from "../common/important/important.component";
 import Table from "../common/table/table.component";
-import configureAndFilterEvents from "./../../services/util-functions/events/configure-and-filter-events";
-import "./unmarked-events.styles.scss";
 
-const MarkButton = ({ label, event, markEvent, action }) => {
+const MarkButton = ({ label, task, markTask, action }) => {
   const [loading, setLoading] = useState(false);
 
   const classes =
@@ -22,7 +21,7 @@ const MarkButton = ({ label, event, markEvent, action }) => {
       onClick={() => {
         setLoading(true);
 
-        markEvent(event, action);
+        markTask(task, action);
       }}
       className={classes}
     >
@@ -35,35 +34,35 @@ const MarkButton = ({ label, event, markEvent, action }) => {
   );
 };
 
-const UnmarkedEvents = ({ events, markEvent }) => {
-  const filterdEvents = configureAndFilterEvents(
-    events,
+const UnmarkedTasks = ({ tasks, markTask }) => {
+  const filterdTasks = configureAndFilterTasks(
+    tasks,
     (data) => !data.upcoming && !data.marked
   );
 
   const columns = [
     {
       key: "important",
-      content: (event) => (
+      content: (task) => (
         <Important
           onClick={() =>
             alert(
-              "Can not update any properties of the event that are past their specified time"
+              "Can not update any properties of the task that are past their specified time"
             )
           }
-          isImportant={event.isImportant}
+          isImportant={task.isImportant}
         />
       ),
     },
-    { path: "name", label: "Event" },
+    { path: "name", label: "Task" },
     { path: "date", label: "Date" },
     { path: "time", label: "time" },
     {
       key: "Complete",
-      content: (event) => (
+      content: (task) => (
         <MarkButton
-          markEvent={markEvent}
-          event={event}
+          markTask={markTask}
+          task={task}
           label="Complete"
           action={true}
         />
@@ -71,10 +70,10 @@ const UnmarkedEvents = ({ events, markEvent }) => {
     },
     {
       key: "delete",
-      content: (event) => (
+      content: (task) => (
         <MarkButton
-          markEvent={markEvent}
-          event={event}
+          markTask={markTask}
+          task={task}
           label={` Failed `}
           action={false}
         />
@@ -83,12 +82,12 @@ const UnmarkedEvents = ({ events, markEvent }) => {
   ];
 
   return (
-    <div className="unmarked-events-table">
-      {filterdEvents.length !== 0 ? (
-        <Table columns={columns} data={filterdEvents} />
+    <div className="unmarked-tasks-table">
+      {filterdTasks.length !== 0 ? (
+        <Table columns={columns} data={filterdTasks} />
       ) : null}
     </div>
   );
 };
 
-export default UnmarkedEvents;
+export default UnmarkedTasks;

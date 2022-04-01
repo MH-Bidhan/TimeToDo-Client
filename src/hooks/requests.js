@@ -44,19 +44,19 @@ export async function httpUpdateUser(id, userCred) {
   return data;
 }
 
-export async function httpGetEvents() {
-  const { data: fetchedEvents } = await http.get(`${API_ENDPOINT}/events`, {
+export async function httpGetTasks() {
+  const { data: fetchedTasks } = await http.get(`${API_ENDPOINT}/tasks`, {
     headers: {
       "x-auth-token": token,
     },
   });
-  return fetchedEvents;
+  return fetchedTasks;
 }
 
-export async function httpCreateEvent(event) {
-  const { data: fetchedEvents } = await http.post(
-    `${API_ENDPOINT}/events`,
-    event,
+export async function httpCreateTask(task) {
+  const { data: fetchedTasks } = await http.post(
+    `${API_ENDPOINT}/tasks`,
+    task,
     {
       headers: {
         "x-auth-token": token,
@@ -64,12 +64,12 @@ export async function httpCreateEvent(event) {
     }
   );
 
-  return fetchedEvents;
+  return fetchedTasks;
 }
 
-export async function httpUpdateEvents(id, updateCred) {
-  const { data: updatedEvent } = await http.put(
-    `${API_ENDPOINT}/events/${id}`,
+export async function httpUpdateTasks(id, updateCred) {
+  const { data: updatedTask } = await http.put(
+    `${API_ENDPOINT}/tasks/${id}`,
     updateCred,
     {
       headers: {
@@ -77,12 +77,12 @@ export async function httpUpdateEvents(id, updateCred) {
       },
     }
   );
-  return updatedEvent;
+  return updatedTask;
 }
 
-export async function httpDeleteEvent(id) {
-  const { data: deletedEvent } = await http.delete(
-    `${API_ENDPOINT}/events/${id}`,
+export async function httpDeleteTask(id) {
+  const { data: deletedTask } = await http.delete(
+    `${API_ENDPOINT}/tasks/${id}`,
     {
       headers: {
         "x-auth-token": token,
@@ -90,5 +90,5 @@ export async function httpDeleteEvent(id) {
     }
   );
 
-  return deletedEvent;
+  return deletedTask;
 }
