@@ -5,23 +5,7 @@
   max-width: 700px;
   transform: translate(-50%, -50%);
   text-align: center;
-  position: relative;
-
-  .close-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 95%;
-
-    background: #dc3545;
-    width: 30px;
-    height: 30px;
-    padding: 0.5rem;
-    border-radius: 100%;
-    color: #fff;
-
-    a {
-      color: #fff;
-    }
-  }
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }

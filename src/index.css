@@ -108,11 +108,11 @@ a:hover {
 }
 
 .btn {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
 }
 
 .badge {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 .important-icon {
@@ -121,4 +121,22 @@ a:hover {
 
 .App {
   position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+.close-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 95%;
+  cursor: pointer;
+  background: #dc3545;
+  width: 30px;
+  height: 30px;
+  padding: 0.5rem;
+  border-radius: 100%;
+  color: #fff;
+}
+.close-button a {
+  color: #fff;
 }

@@ -8,7 +8,10 @@ const NavItem = ({ label, pageId }) => {
 
   return (
     <div
-      onClick={() => setPage(pageId)}
+      onClick={() => {
+        sessionStorage.setItem("page", pageId);
+        setPage(pageId);
+      }}
       className={`nav-item ${active ? "active" : ""}`}
     >
       {label}

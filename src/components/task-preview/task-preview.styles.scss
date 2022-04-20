@@ -1,0 +1,34 @@
+.task-preview {
+  background: var(--color-background);
+  padding: 2rem;
+  width: 700px;
+  max-width: 700px;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  position: relative;
+
+  .task-preview-heading {
+    font-size: 2rem;
+    color: var(--color-heading);
+    border-bottom: 1px solid var(--color-heading);
+    font-weight: bold;
+    margin: 3rem auto;
+    display: inline-block;
+  }
+}
+
+.grid {
+  display: grid;
+  text-align: start;
+  justify-content: center;
+  margin: 2rem;
+}
+
+.grid-1x2 {
+  grid-template-columns: 35% 65%;
+}
+
+.grid-item {
+  //   padding: 1rem;
+  margin: 1rem;
+}

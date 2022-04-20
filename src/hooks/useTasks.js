@@ -21,7 +21,7 @@ function useTasks() {
     async (task) => {
       const newTask = await httpCreateTask(task);
 
-      getTasks();
+      await getTasks();
 
       return newTask;
     },

@@ -1,5 +1,6 @@
+import { css } from "@emotion/react";
 import React from "react";
-import { Link } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
 import CustomButton from "../common/custom-button/custom-button.component";
 import InputError from "../common/input-error/input-error.component";
 import InputFeild from "../common/input-feild/input-feild.component";
@@ -11,6 +12,7 @@ class NewTaskForm extends React.Component {
     super(props);
 
     this.state = {
+      loading: false,
       name: "",
       description: "",
       time: "",
@@ -27,8 +29,9 @@ class NewTaskForm extends React.Component {
     });
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
+    this.setState({ loading: true });
     const { name, description, time, date } = this.state;
 
     const { createNewTask } = this.props;
@@ -68,7 +71,7 @@ class NewTaskForm extends React.Component {
 
     this.setState({ error: {} });
 
-    createNewTask({
+    await createNewTask({
       name: name.trim(),
       description: description.trim(),
       timeOfTask: timeOfTask.toISOString(),
@@ -78,13 +81,15 @@ class NewTaskForm extends React.Component {
   };
 
   render() {
-    const { name, description, time, date, error } = this.state;
+    const { name, description, time, date, error, loading } = this.state;
+    const { handleClose } = this.props;
     const today = new Date().toISOString().split("T")[0];
 
     return (
       <div className="new-task">
+        {loading ? <Loader /> : null}
         <span className="close-button">
-          <Link to={"/"}>&#10006;</Link>
+          <span onClick={handleClose}>&#10006;</span>
         </span>
         <form className="new-task-form" onSubmit={this.handleSubmit}>
           <InputFeild
@@ -138,3 +143,20 @@ class NewTaskForm extends React.Component {
 }
 
 export default NewTaskForm;
+
+const Loader = (loading) => {
+  const override = css`
+    display: block;
+    margin: 0 auto;
+  `;
+  return (
+    <div className="loading-screen">
+      <ClipLoader
+        color={"var(--color-heading)"}
+        loading={loading}
+        css={override}
+        size={50}
+      />
+    </div>
+  );
+};
