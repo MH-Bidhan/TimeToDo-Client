@@ -1,13 +1,10 @@
 import React from "react";
 import configureAndFilterTasks from "../../services/util-functions/tasks/configure-and-filter-tasks";
-import DeleteButton from "../common/delete-button/delete-button.component";
 import Table from "../common/table/table.component";
+import DeleteButton from "./../common/delete-button/delete-button.component";
 
-const PastTasks = ({ tasks, deleteTask }) => {
-  const filterdTasks = configureAndFilterTasks(
-    tasks,
-    (data) => !data.upcoming && !data.archived && data.marked
-  );
+const ArchivedTasks = ({ tasks, deleteTask }) => {
+  const filterdTasks = configureAndFilterTasks(tasks, (data) => data.archived);
 
   const columns = [
     { path: "name", label: "Task" },
@@ -33,15 +30,15 @@ const PastTasks = ({ tasks, deleteTask }) => {
   ];
 
   return (
-    <div className="important-task-table">
+    <div className="archived-task-table">
+      <div className="task-title">Archived tasks</div>
       {filterdTasks.length !== 0 ? (
-        <React.Fragment>
-          <div className="task-title">past tasks</div>
-          <Table columns={columns} data={filterdTasks} />
-        </React.Fragment>
-      ) : null}
+        <Table columns={columns} data={filterdTasks} />
+      ) : (
+        <span>No tasks found in the current list</span>
+      )}
     </div>
   );
 };
 
-export default PastTasks;
+export default ArchivedTasks;

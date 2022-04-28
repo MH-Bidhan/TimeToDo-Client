@@ -3,9 +3,7 @@
   padding: 2rem;
   width: 700px;
   max-width: 700px;
-  transform: translate(-50%, -50%);
   text-align: center;
-  position: relative;
 
   .task-preview-heading {
     font-size: 2rem;
@@ -29,6 +27,5 @@
 }
 
 .grid-item {
-  //   padding: 1rem;
   margin: 1rem;
 }

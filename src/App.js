@@ -4,16 +4,22 @@ import PopUp from "./components/common/pop-up/pop-up.component";
 import Header from "./components/header/header.component";
 import NewTaskForm from "./components/new-task-form/new-task-form.component";
 import RootComponent from "./components/root/root.component";
+import TaskPreview from "./components/task-preview/task-preview.component";
 import UtilDropDown from "./components/util-dropdown/util-dropdown.component";
 import useTasks from "./hooks/useTasks";
 import useUser from "./hooks/useUser";
+import ArchivedPage from "./pages/archive-tasks/archived-page.component";
 import LoadingPage from "./pages/loading/loading-page.component";
 import SigninPage from "./pages/sign-in/sign-in-page.component";
 import SignUpPage from "./pages/sign-up/sign-up-page.component";
-import TaskPreviewPage from "./pages/task-preview/task-preview-page.component";
 
 export const UserContext = createContext();
 export const GlobalContext = createContext();
+export const TaskPreviewContext = createContext();
+
+const changeState = (state, setState) => {
+  setState(!state);
+};
 
 function App() {
   const { user } = useUser();
@@ -27,31 +33,54 @@ function App() {
   const [utils, setUtils] = useState(false);
   const [darkTheme, setDarkTheme] = useState(false);
   const [newTaskPop, setNewTaskPop] = useState(false);
+  const [archivePop, setArchivePop] = useState(false);
+  const [taskToPreview, setTaskToPreview] = useState(null);
 
   useEffect(() => {
     const theme = user?.darkTheme || false;
-    console.log();
     setDarkTheme(theme);
   }, [user]);
 
   document.body.className = darkTheme ? "dark" : "";
 
-  const a = (state, setState) => {
-    setState(!state);
-  };
   return (
     <div className="App">
-      <Header state={utils} setState={setUtils} avatar={user?.avatar} />
+      <Header
+        handleDropdown={() => changeState(utils, setUtils)}
+        avatar={user?.avatar}
+      />
       {utils ? (
-        <UtilDropDown user={user} theme={darkTheme} setTheme={setDarkTheme} />
+        <UtilDropDown
+          archivePopUp={() => changeState(archivePop, setArchivePop)}
+          user={user}
+          theme={darkTheme}
+          setTheme={setDarkTheme}
+        />
       ) : null}
 
       {newTaskPop ? (
-        <PopUp>
+        <PopUp handleClose={() => changeState(newTaskPop, setNewTaskPop)}>
           <NewTaskForm
             createNewTask={createNewTask}
-            handleClose={() => a(newTaskPop, setNewTaskPop)}
+            handleClose={() => changeState(newTaskPop, setNewTaskPop)}
           />
+        </PopUp>
+      ) : null}
+
+      {archivePop ? (
+        <PopUp handleClose={() => changeState(archivePop, setArchivePop)}>
+          <GlobalContext.Provider value={{ setTaskToPreview }}>
+            <ArchivedPage
+              handleClose={() => changeState(archivePop, setArchivePop)}
+            />
+          </GlobalContext.Provider>
+        </PopUp>
+      ) : null}
+      {taskToPreview ? (
+        <PopUp handleClose={() => setTaskToPreview(null)}>
+          <GlobalContext.Provider value={{ taskToPreview }}>
+            <TaskPreview />
+          </GlobalContext.Provider>
         </PopUp>
       ) : null}
 
@@ -67,6 +96,7 @@ function App() {
                   value={{
                     newTaskPop,
                     setNewTaskPop,
+                    setTaskToPreview,
                   }}
                 >
                   <RootComponent />
@@ -77,11 +107,6 @@ function App() {
             }
           />
 
-          <Route
-            path="/task/:id"
-            index
-            element={user ? <TaskPreviewPage /> : <Navigate to={"/signin"} />}
-          />
           <Route
             path="/signin"
             element={!user ? <SigninPage /> : <Navigate to={"/"} />}

@@ -82,15 +82,13 @@ class NewTaskForm extends React.Component {
 
   render() {
     const { name, description, time, date, error, loading } = this.state;
-    const { handleClose } = this.props;
+
     const today = new Date().toISOString().split("T")[0];
 
     return (
       <div className="new-task">
         {loading ? <Loader /> : null}
-        <span className="close-button">
-          <span onClick={handleClose}>&#10006;</span>
-        </span>
+
         <form className="new-task-form" onSubmit={this.handleSubmit}>
           <InputFeild
             name="name"

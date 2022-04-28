@@ -1,5 +1,5 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { GlobalContext } from "../../../App";
 
 const createKey = (item) => {
   const id = item.id || item._id;
@@ -8,7 +8,7 @@ const createKey = (item) => {
 };
 
 const TableBody = ({ data, columns }) => {
-  const navigate = useNavigate();
+  const { setTaskToPreview } = useContext(GlobalContext);
   return (
     <tbody>
       {data.map((item) => (
@@ -24,7 +24,7 @@ const TableBody = ({ data, columns }) => {
 
             return (
               <td
-                onClick={() => navigate(`/task/${item["_id"]}`)}
+                onClick={() => setTaskToPreview(item)}
                 key={createKey(column)}
                 className="table-content"
               >

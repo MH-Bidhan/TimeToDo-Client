@@ -2,7 +2,6 @@ import { css } from "@emotion/react";
 import React, { useState } from "react";
 import { ClipLoader } from "react-spinners";
 import configureAndFilterTasks from "../../services/util-functions/tasks/configure-and-filter-tasks";
-import Important from "../common/important/important.component";
 import Table from "../common/table/table.component";
 
 const MarkButton = ({ label, task, markTask, action }) => {
@@ -41,19 +40,6 @@ const UnmarkedTasks = ({ tasks, markTask }) => {
   );
 
   const columns = [
-    {
-      key: "important",
-      content: (task) => (
-        <Important
-          onClick={() =>
-            alert(
-              "Can not update any properties of the task that are past their specified time"
-            )
-          }
-          isImportant={task.isImportant}
-        />
-      ),
-    },
     { path: "name", label: "Task" },
     { path: "date", label: "Date" },
     { path: "time", label: "time" },

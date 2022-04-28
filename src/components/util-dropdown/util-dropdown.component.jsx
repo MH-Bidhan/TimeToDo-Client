@@ -4,7 +4,7 @@ import useUser from "./../../hooks/useUser";
 import ToggleSwitch from "./../common/toggle-switcher/toggle-switch.component";
 import "./util-dropdown.styles.scss";
 
-const UtilDropDown = ({ user, theme, setTheme }) => {
+const UtilDropDown = ({ user, theme, setTheme, archivePopUp }) => {
   const { chageTheme } = useUser();
   const id = user?._id;
 
@@ -41,7 +41,15 @@ const UtilDropDown = ({ user, theme, setTheme }) => {
       </div>
       {user ? (
         <React.Fragment>
-          <div className="util-item">Archived Tasks</div>
+          <div
+            onClick={() => {
+              archivePopUp();
+              sessionStorage.setItem("archivePage", true);
+            }}
+            className="util-item"
+          >
+            Archived Tasks
+          </div>
           <div onClick={signOutUser} className="util-item">
             Sign Out
           </div>

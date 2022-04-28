@@ -1,43 +1,40 @@
 import moment from "moment";
-import React, { useCallback, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { httpGetTaskById } from "../../hooks/requests";
+import React, { useContext } from "react";
+import { GlobalContext } from "../../App";
 import "./task-preview.styles.scss";
 
 const TaskPreview = () => {
-  const [task, setTask] = useState(null);
-  const { id } = useParams();
+  const { taskToPreview: task } = useContext(GlobalContext);
+  const {
+    upcoming,
+    archived,
+    marked,
+    completed,
+    timeOfTask,
+    name,
+    description,
+  } = task;
 
-  const getTask = useCallback(async (id) => {
-    const fetchedTask = await httpGetTaskById(id);
-
-    setTask(fetchedTask);
-  }, []);
-
-  useEffect(() => {
-    getTask(id);
-  }, [getTask, id]);
-
-  const date = moment(task?.timeOfTask)
+  const date = moment(timeOfTask)
     .format("MMMM Do YYYY, h:mm:ss a")
     .split(",")[0];
-  const time = moment(task?.timeOfTask)
+  const time = moment(timeOfTask)
     .format("MMMM Do YYYY, h:mm:ss a")
     .split(",")[1]
     .toUpperCase();
 
-  const content = (task) => {
-    if (task?.upcoming) {
+  const content = () => {
+    if (upcoming) {
       return <span className="badge badge-secondary">Upcomming</span>;
     }
 
-    if (task?.archived) {
+    if (archived) {
       return <span className="badge badge-danger">Archived</span>;
     }
-    if (task?.marked && task?.completed) {
+    if (marked && completed) {
       return <span className="badge badge-success">Completed</span>;
     }
-    if (task?.marked && !task?.completed) {
+    if (marked && !completed) {
       return <span className="badge badge-danger">Failed</span>;
     } else {
       return <span className="badge badge-secondary">Unknown</span>;
@@ -46,15 +43,12 @@ const TaskPreview = () => {
 
   return (
     <div className="task-preview">
-      <span className="close-button">
-        <Link to={"/"}>&#10006;</Link>
-      </span>
       <div className="task-preview-heading">Task Detail</div>
       <div className="grid grid-1x2">
         <span className="grid-item">Task Name :</span>
-        <span className="grid-item"> {task?.name}</span>
+        <span className="grid-item"> {name}</span>
         <span className="grid-item">Task Description :</span>
-        <span className="grid-item"> {task?.description}</span>
+        <span className="grid-item"> {description}</span>
         <span className="grid-item">Date :</span>
         <span className="grid-item"> {date}</span>
         <span className="grid-item">Time : </span>
