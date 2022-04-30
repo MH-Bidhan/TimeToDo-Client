@@ -22,7 +22,7 @@ const HomePage = () => {
         <React.Fragment>
           <div className="new-task-container">
             <span className="quota-viewer">
-              Reamining Quota : {user.remainingQuota}
+            Remaining Quota : {user?.remainingQuota}
             </span>
 
             <CustomButton

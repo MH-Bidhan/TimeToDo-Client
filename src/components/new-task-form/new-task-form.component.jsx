@@ -60,13 +60,21 @@ class NewTaskForm extends React.Component {
     console.log(timeOfTask);
 
     if (Date.now() > timeOfTask.getTime()) {
-      console.log("e");
       return this.setState({
         error: {
           time: "Task time must be in the future",
         },
       });
     }
+
+    if (timeOfTask.getTime() > Date.now() + 2628000000 ) {
+      return this.setState({
+        error: {
+          time: "Task time must be within a month",
+        },
+      });
+    }
+
     this.setState({ error: {}, loading: true });
 
     await createNewTask({
