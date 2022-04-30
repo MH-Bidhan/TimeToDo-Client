@@ -1,4 +1,4 @@
-# TimeToDo-Server
+# TimeToDo-Client
 
 This is the client side ( Frontend ) of my personal project TimeToDo. An user can create an account and use this application to track their progress on the daily tasks.
 
