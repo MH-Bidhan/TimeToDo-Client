@@ -3,6 +3,7 @@ import LoadingScreen from "../../components/common/loading-screen/loading-screen
 import UnmarkedTasks from "../../components/unmarked-tasks/unmarked-tasks.component";
 import useTasks from "../../hooks/useTasks";
 import PastTasks from "./../../components/past-tasks/past-tasks.component";
+import "./past-tasks-page.styles.scss";
 
 const PastTasksPage = () => {
   const { loading, tasks, handleImportant, deleteTask, handleMark } =

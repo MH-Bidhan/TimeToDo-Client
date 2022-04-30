@@ -2,7 +2,7 @@
   position: relative;
   background-color: var(--color-primary);
   padding: 0;
-  height: 70rem;
+  height: min(100% - 2rem, 70%);
   overflow-y: scroll;
   width: 100%;
 
@@ -12,5 +12,15 @@
 
   &::-webkit-scrollbar {
     display: none;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .root-component {
+    width: 90%;
+
+    .page-container {
+      padding: 0 0.5rem;
+    }
   }
 }

@@ -7,8 +7,35 @@
   box-sizing: border-box;
 }
 
+:root {
+  --breakpoint-tablet: 768px;
+  --breakpoint-mobile: 500px;
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.5);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 html {
   font-size: 62.5%;
+  overflow-x: hidden;
+  width: 100vw;
   overflow-x: hidden;
 }
 
@@ -21,8 +48,8 @@ body {
   --color-avatar-bg: rgba(30, 32, 42, 0.2);
   --content-width: 10rem;
   --color-primary: #f0f2fa;
-
-  /* width: 100vw; */
+  width: 100vw;
+  overflow-x: hidden;
   font-size: 1.6rem;
   line-height: 1.5;
   margin: 0;

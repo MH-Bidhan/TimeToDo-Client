@@ -4,6 +4,9 @@
   width: 700px;
   max-width: 700px;
   text-align: center;
+  transition: opacity 0.15s ease-in;
+  animation-name: pop;
+  animation-duration: 0.5s;
 
   .task-preview-heading {
     font-size: 2rem;
@@ -28,4 +31,10 @@
 
 .grid-item {
   margin: 1rem;
+}
+
+@media screen and (max-width: 500px) {
+  .task-preview {
+    width: 100%;
+  }
 }

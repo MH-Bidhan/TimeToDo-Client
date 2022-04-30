@@ -1,0 +1,10 @@
+@media screen and (max-width: 500px) {
+  .past-tasks-page {
+    .table {
+      tr :nth-child(2),
+      tr :nth-child(3) {
+        display: none;
+      }
+    }
+  }
+}

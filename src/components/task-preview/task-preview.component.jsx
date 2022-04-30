@@ -13,6 +13,7 @@ const TaskPreview = () => {
     timeOfTask,
     name,
     description,
+    isImportant,
   } = task;
 
   const date = moment(timeOfTask)
@@ -41,12 +42,22 @@ const TaskPreview = () => {
     }
   };
 
+  const priority = () => {
+    if (isImportant) {
+      return <span className="badge badge-primary">Important</span>;
+    } else {
+      return <span className="badge badge-secondary">Normal</span>;
+    }
+  };
+
   return (
     <div className="task-preview">
       <div className="task-preview-heading">Task Detail</div>
       <div className="grid grid-1x2">
         <span className="grid-item">Task Name :</span>
         <span className="grid-item"> {name}</span>
+        <span className="grid-item">Priority :</span>
+        <span className="grid-item">{priority()}</span>
         <span className="grid-item">Task Description :</span>
         <span className="grid-item"> {description}</span>
         <span className="grid-item">Date :</span>
@@ -54,7 +65,7 @@ const TaskPreview = () => {
         <span className="grid-item">Time : </span>
         <span className="grid-item"> {time}</span>
         <span className="grid-item">Status: </span>
-        <span className="grid-item">{content(task)}</span>
+        <span className="grid-item">{content()}</span>
       </div>
     </div>
   );

@@ -31,7 +31,6 @@ class NewTaskForm extends React.Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    this.setState({ loading: true });
     const { name, description, time, date } = this.state;
 
     const { createNewTask } = this.props;
@@ -68,8 +67,7 @@ class NewTaskForm extends React.Component {
         },
       });
     }
-
-    this.setState({ error: {} });
+    this.setState({ error: {}, loading: true });
 
     await createNewTask({
       name: name.trim(),
